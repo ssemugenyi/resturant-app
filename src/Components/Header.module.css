@@ -1,0 +1,23 @@
+.rest_appBar {
+  height: 70px;
+  justify-content: center;
+  align-items: center;
+}
+.nav_link {
+  text-decoration: none;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 700;
+}
+.nav_link:hover {
+  color: #aa336a;
+}
+
+.nav_button {
+  background-color: #aa336a;
+  border-radius: 50px;
+  padding: 0.5rem 1.5rem;
+}
+.nav_button:hover {
+  color: #0d6efd;
+}

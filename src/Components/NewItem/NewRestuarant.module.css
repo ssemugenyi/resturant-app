@@ -1,0 +1,16 @@
+.addForm {
+  width: 400px;
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+  justify-content: center;
+  flex-direction: column;
+  margin: 20px auto;
+  padding: 25px 15px;
+}
+
+@media screen and (max-width: 800px) {
+  .addForm {
+    width: 100%;
+  }
+}
