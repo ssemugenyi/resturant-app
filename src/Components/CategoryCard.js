@@ -7,7 +7,7 @@ import Typography from "@mui/material/Typography";
 import CardMedia from "@mui/material/CardMedia";
 import { Link } from "react-router-dom";
 
-const CategoryCard = () => {
+const CategoryCard = (props) => {
   return (
     <Card
       sx={{
@@ -15,6 +15,7 @@ const CategoryCard = () => {
         margin: "20px",
         borderRadius: "15px",
       }}
+      key={props.id}
     >
       <CardContent>
         <CardMedia
@@ -28,7 +29,7 @@ const CategoryCard = () => {
           title="Restaurant image"
         />
         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-          Chicken
+          {props.cuisineType}
         </Typography>
       </CardContent>
       <CardActions></CardActions>

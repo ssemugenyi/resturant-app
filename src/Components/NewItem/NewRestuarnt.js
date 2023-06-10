@@ -13,15 +13,16 @@ import {
   Typography,
 } from "@mui/material";
 import classes from "./NewRestuarant.module.css";
-import {
-  CreateNewRestaurant,
-  fetchAllRestaurants,
-} from "../../store/Actions/RestaurantActions";
+import { CreateNewRestaurant } from "../../store/Actions/RestaurantActions";
+import { selectNewIsLoading } from "../../store/slices/newRestaurantSlice";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const NewRestuarnt = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+  const isLoading = useSelector(selectNewIsLoading);
 
   const [values, setValues] = useState({
     name: "",
@@ -30,12 +31,11 @@ const NewRestuarnt = () => {
     location: "",
     image: "",
   });
-  const [age, setAge] = React.useState("");
 
   const selecthandleChange = (event) => {
-    setAge(event.target.value);
+    const selectInput = event.target.value;
+    setValues({ ...values, cuisineType: selectInput });
   };
-  useEffect(() => {}, [values]);
 
   const handleChange = (event) => {
     console.log(event);
@@ -60,13 +60,14 @@ const NewRestuarnt = () => {
           values.image
         )
       );
-      console.log(
-        values.name,
-        values.title,
-        values.cuisineType,
-        values.location,
-        values.image
-      );
+      setValues({
+        name: "",
+        title: "",
+        cuisineType: "",
+        location: "",
+        image: "",
+      });
+      navigate("/listing");
     } catch (error) {
       console.log(error);
     }
@@ -85,6 +86,8 @@ const NewRestuarnt = () => {
             variant="outlined"
             value={values.name}
             onChange={handleChange}
+            // error={true}
+            // helperText="This field is required"
           />
         </FormControl>
         <FormControl margin="dense">
@@ -104,13 +107,13 @@ const NewRestuarnt = () => {
             id="cuisine-type"
             label="Cuisine Type"
             name="cuisine-type"
-            value={age}
+            value={values.cuisineType}
             onChange={selecthandleChange}
           >
-            <MenuItem value={1}>Pizzza</MenuItem>
-            <MenuItem value={2}>Chicken</MenuItem>
-            <MenuItem value={3}>Vegetable</MenuItem>
-            <MenuItem value={4}>Burger</MenuItem>
+            <MenuItem value="Pizza">Pizza</MenuItem>
+            <MenuItem value="Chicken">Chicken</MenuItem>
+            <MenuItem value="Vegetable">Vegetable</MenuItem>
+            <MenuItem value="Burger">Burger</MenuItem>
           </Select>
         </FormControl>
         <FormControl margin="dense">
@@ -137,7 +140,7 @@ const NewRestuarnt = () => {
           />
         </FormControl>
         <Button variant="contained" type="submit">
-          Create Restaurant
+          {isLoading ? "Creating restuarant..." : "Create Restaurant"}
         </Button>
       </Paper>
     </Form>

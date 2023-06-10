@@ -5,9 +5,9 @@ import fetchAllRestaurantReducer from "./slices/fetchAllRestaurantSlice";
 import deleteRestaurantReducer from "./slices/deleteRestaurantSlice";
 const store = configureStore({
   reducer: {
-    // createNewResturant: createNewResturantReducer,
+    createNewResturant: createNewResturantReducer,
     // editResturant: editResturantReducer,
-    // fetchAllRestaurant: fetchAllRestaurantReducer,
+    fetchAllRestaurant: fetchAllRestaurantReducer,
     // deleteRestaurant: deleteRestaurantReducer,
   },
 });
